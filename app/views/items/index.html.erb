@@ -1,0 +1,12 @@
+<h1>all items</h1><hr>
+
+<% @items.each do |item| %>
+   <ul>
+     <li><%= link_to item.name, item_path(item)%></li>
+     <li><%= item.price %></li>
+     <li><%= item.description %></li>
+     <li><%= button_to 'delete', item_path(item), method: :delete %></li>
+   </ul>
+<% end %> 
+<hr>
+<%= link_to 'new', new_item_path %>

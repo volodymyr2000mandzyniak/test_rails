@@ -1,0 +1,11 @@
+<h1>show item</h1>
+
+<h4><%= @item.name %></h4>
+
+<ul>
+  <li>price:<%= @item.price %> $ </li>
+  <li>description:<%= @item.description %></li>
+  <li>weight:<%= @item.weight %></li>
+</ul>
+<hr>
+<%= link_to 'back', items_path %>
