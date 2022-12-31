@@ -1,12 +1,27 @@
 <h1>all items</h1><hr>
 
-<% @items.each do |item| %>
-   <ul>
-     <li><%= link_to item.name, item_path(item)%></li>
-     <li><%= item.price %></li>
-     <li><%= item.description %></li>
-     <li><%= button_to 'delete', item_path(item), method: :delete %></li>
-   </ul>
-<% end %> 
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Rating</th>
+    <th>Delete</th>
+  </tr>
+  <% @items.each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <th><%= link_to item.name, item_path(item)%></th>
+    <th><%= item.price %></th>
+    <th><%= item.description %></th>
+    <th><%= item.votes_count %>, <%= link_to '+', upvote_item_path(item) %></th>
+
+    <th><%= button_to 'delete', item_path(item), method: :delete %></th>
+  </tr>
+  <% end %> 
+</table>
 <hr>
-<%= link_to 'new', new_item_path %>
+<%= button_to 'new_item', new_item_path, method: :get %>
+<br/>
+<%= button_to 'only expensive', expensive_items_path, method: :get %>
