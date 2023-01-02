@@ -7,10 +7,10 @@
   <li>description:<%= @item.description %></li>
   <li>weight:<%= @item.weight %></li>
 </ul>
-<%= link_to "edit #{@item.name}", edit_item_path %>
- 
-<%= button_to "delete #{@item.name}", item_path(@item), method: :delete %>
+<%= link_to "Edit #{@item.name}", edit_item_path %>
+
+<%= button_to "Delete #{@item.name}", item_path(@item), method: :delete %>
 
 
 <hr>
-<%= link_to 'index', items_path %>
+<%= link_to 'All items', items_path %>

@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :find_item, only: %i[show edit update destroy upvote]
   before_action :admin?, only: %i[edit update new create destroy]
 
-  
   def index
     @items = Item.all    
   end
@@ -45,7 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def expensive
-    @items = Item.where("params > 50")
+    @items = Item.where('price > 50')
     render :index
   end
 
@@ -54,7 +53,6 @@ class ItemsController < ApplicationController
     redirect_to items_path
   end
   
-
   private
 
   def items_params
