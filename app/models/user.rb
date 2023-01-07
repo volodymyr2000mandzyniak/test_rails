@@ -3,4 +3,5 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy
   #user має багато orders 
   has_many :orders,   depended: :destroy
+  has_many :comments
 end 

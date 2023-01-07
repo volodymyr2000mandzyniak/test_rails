@@ -7,4 +7,6 @@
   <%= text_field_tag :price, @item.price %>
   <%= submit_tag "Update", class: "btn btn-large btn-primary" %>
 <% end %>
+<hr>
 
+<%= render partial: 'shared/email'%>
