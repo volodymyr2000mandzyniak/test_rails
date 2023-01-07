@@ -4,11 +4,12 @@
 
 <ul>
   <li>price:<%= @item.price %> $ </li>
-  <li>description:<%= @item.description %></li>
+  <li>description:<%= urls_to_images(@item.description) %></li>
   <li>weight:<%= @item.weight %></li>
+  <li>Link: <%= urls_to_images("https://uk.wikipedia.org/wiki/%D0%9A%D0%B2%D1%96%D1%82%D0%BA%D0%B0")%></li>
 </ul>
 
-<%= button_to "Edit #{@item.name}", edit_item_path, metod: :get %>
+<%= button_to "Edit #{@item.name}", edit_item_path, method: :get %>
 <%= button_to "Delete #{@item.name}", item_path(@item), method: :delete %>
 <%= button_to 'All items', items_path , method: :get%>
 <hr>

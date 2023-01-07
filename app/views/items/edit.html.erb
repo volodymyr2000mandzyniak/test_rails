@@ -3,10 +3,19 @@
 <%= form_tag item_path(@item), method: :put do %>
   <%= label_tag :name%>
   <%= text_field_tag :name, @item.name %>
+  
   <%= label_tag :price %>
   <%= text_field_tag :price, @item.price %>
+
+  <%= label_tag :weight %>
+  <%= text_field_tag :weight, @item.weight %>
+  
+  <%= label_tag :description %>
+  <%= text_field_tag :description, @item.description %>
+
   <%= submit_tag "Update", class: "btn btn-large btn-primary" %>
 <% end %>
 <hr>
+<%= button_to 'All items', items_path , method: :get%>
 
 <%= render partial: 'shared/email'%>
