@@ -4,8 +4,8 @@ class Item < ApplicationRecord
   
   has_many :comments, as: :commentable
   has_many :positions
-  #item може мати декілька carts через positions
   has_many :carts, through: :positions
+  has_one :image, as: :imageable
   #has_and_belongs_to_many  :carts
 end
  

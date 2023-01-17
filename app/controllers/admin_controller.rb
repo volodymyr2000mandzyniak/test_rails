@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   def users_count
     @users_count = User.count  
-    render :layout "admin"      
+    render layout: 'admin'      
   end
     
 end

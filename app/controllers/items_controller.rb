@@ -5,15 +5,22 @@ class ItemsController < ApplicationController
   after_action  :show_info, only: %i[index]
 
   def index
-    @items = Item.all    
+    @items = Item
+    @items = @items.where('price >= ?', params[:price_from])       if params[:price_from]
+    @items = @items.where('created_at >= ?, 1.day.ago')            if params[:today]
+    @items = @items.where('votes_count >= ?', params[:votes_from]) if params[:votes_from]
+    @items = @items.order(:id)
+    @items = @items.includes(:image)
   end
 
   def create
     item = Item.create(items_params)
-    if item.persisted?  
+    if item.persisted?
+      flash[:success] = "Item was saved" 
       redirect_to items_path 
     else 
-      render json: item.errors, statud: :unprocessable_entity
+      flash.now[:error] = "Please fill all fields correctly " 
+      render :new
     end
   end
 
@@ -24,17 +31,21 @@ class ItemsController < ApplicationController
   def edit; end
 
   def update
-    if @item.update(items_params) 
+    if @item.update(items_params)
+      flash[:success] = "Item was updated"  
       redirect_to item_path
     else
+      flash.now[:error] = "Please fill all fields correctly" 
       render json: items.errors, status: :unprocessable_entity
     end
   end
 
   def destroy 
     if @item.destroy.destroyed?
+      flash[:success] = "Item was deleted"  
       redirect_to items_path
     else
+      flash[:error] = "Item wasn't deleted" 
       render json: item.errors, status: :unprocessable_entity
     end
   end

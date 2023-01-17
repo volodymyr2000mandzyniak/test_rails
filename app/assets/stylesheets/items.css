@@ -1,0 +1,6 @@
+.my_table, tr, th {
+    border: 1px solid black;
+    padding: 4px;    
+    margin: 4px;
+    background: #DADADA;  
+  }
