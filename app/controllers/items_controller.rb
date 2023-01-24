@@ -13,9 +13,13 @@ class ItemsController < ApplicationController
     @items = @items.includes(:image)
   end
 
+  def new 
+    @item = Item.new
+  end 
+
   def create
-    item = Item.create(items_params)
-    if item.persisted?
+    @item = Item.create(items_params)
+    if @item.persisted?
       flash[:success] = "Item was saved" 
       redirect_to items_path 
     else 
@@ -24,7 +28,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def new; end
+ 
 
   def show; end
 
@@ -63,7 +67,7 @@ class ItemsController < ApplicationController
   private
 
   def items_params
-    params.permit(:price, :name, :real, :weight, :description)
+    params.require.(:item).permit(:price, :name, :description)
   end
 
   def find_item
